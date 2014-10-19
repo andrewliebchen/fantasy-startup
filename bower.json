@@ -1,0 +1,8 @@
+{
+  "name": "fantasy-startup",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.11.1",
+    "_normalize.scss": "~2.1.3"
+  }
+}

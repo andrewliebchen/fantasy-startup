@@ -1,0 +1,87 @@
+// bower:scss
+@import "_normalize.scss/_normalize.scss";
+// endbower
+
+@import "bourbon";
+@import "neat";
+
+// VARIABLES
+$font-family-base: "Open Sans", $helvetica;
+$font-family-heading: "Oswald", $font-family-base;
+
+$color-gray: #333333;
+$color-brand: rgb(72, 194, 90);
+$color-brand-light: rgb(174, 230, 185);
+$color-brand-lighter: rgb(214, 243, 218);
+
+// BASE
+body {
+  background: white;
+  font-family: $font-family-base;
+  color: $color-gray;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-family-heading;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  padding-bottom: 1em;
+}
+
+a {
+  color: $color-brand;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// COMPONENTS
+
+// LAYOUT
+.main {
+
+}
+
+.main__header {
+  @include clearfix;
+  padding: 2em 0 4em;
+}
+
+.main__header__wrapper {
+  @include outer-container;
+  position: relative;
+}
+
+.mailing-list {
+  @include position(absolute, 0 0 null null);
+}
+
+.main__content {
+  @include outer-container;
+}
+
+.main__footer {
+
+}
+
+// THEME
+.main__header {
+  background-color: $color-brand;
+  color: white;
+}
+
+.brand__description {
+  color: $color-gray;
+}
