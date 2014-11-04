@@ -2,11 +2,8 @@
 @import "_normalize.scss/_normalize.scss";
 // endbower
 
-@import "bourbon";
-@import "neat";
-
 // VARIABLES
-$font-family-base: $helvetica;
+$font-family-base: "helvetica neue", helvetica, arial, sans-serif;
 $font-family-heading: $font-family-base;
 
 $color-gray:          #333333;
@@ -15,8 +12,17 @@ $color-brand-dark:    rgb(33, 84, 42);
 $color-brand-light:   rgb(174, 230, 185);
 $color-brand-lighter: rgb(214, 243, 218);
 
+@mixin clearfix {
+  &:after {
+    content:"";
+    display:table;
+    clear:both;
+  }
+}
+
 %width-wrapper {
-  @include outer-container;
+  width: 1000px;
+  margin: 0 auto;
   padding: 0 1em;
   position: relative;
 }
@@ -80,7 +86,9 @@ ul {
 }
 
 .mailing-list {
-  @include position(absolute, 0 1em null null);
+  position: absolute;
+  top: 0;
+  right: 1em;
 }
 
 .brand__description {
@@ -92,18 +100,19 @@ ul {
 }
 
 .startups__header {
-  @include border-top-radius(3px);
-  @include row();
+  // @include border-top-radius(3px);
+  // @include row();
+  border-radius: 3px 3px 0 0;
   line-height: 3em;
 }
 
 .startup {
-  @include row();
+  @include clearfix;
   padding: 2em 0;
 }
 
 .startup__column_name {
-  @include span-columns(3);
+  // @include span-columns(3);
 
   .startups__header & {
     padding-left: 1em;

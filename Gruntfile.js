@@ -124,8 +124,8 @@ module.exports = function (grunt) {
     sass: {
       options: {
         sourceMap: true,
-        includePaths: require('node-neat').with('bower_components')
-        },
+        includePaths: ['bower_components']
+      },
       dist: {
         files: [{
           expand: true,
