@@ -6,13 +6,20 @@
 @import "neat";
 
 // VARIABLES
-$font-family-base: "Open Sans", $helvetica;
-$font-family-heading: "Oswald", $font-family-base;
+$font-family-base: $helvetica;
+$font-family-heading: $font-family-base;
 
-$color-gray: #333333;
-$color-brand: rgb(72, 194, 90);
-$color-brand-light: rgb(174, 230, 185);
+$color-gray:          #333333;
+$color-brand:         rgb(72, 194, 90);
+$color-brand-dark:    rgb(33, 84, 42);
+$color-brand-light:   rgb(174, 230, 185);
 $color-brand-lighter: rgb(214, 243, 218);
+
+%width-wrapper {
+  @include outer-container;
+  padding: 0 1em;
+  position: relative;
+}
 
 // BASE
 body {
@@ -28,8 +35,6 @@ h2,
 h3,
 h4 {
   font-family: $font-family-heading;
-  text-transform: uppercase;
-  letter-spacing: -1px;
   margin: 0;
 }
 
@@ -47,6 +52,17 @@ a {
   }
 }
 
+small {
+  font-size: 0.75em;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 // COMPONENTS
 
 // LAYOUT
@@ -56,20 +72,42 @@ a {
 
 .main__header {
   @include clearfix;
-  padding: 2em 0 4em;
+  padding: 2em 0 0;
 }
 
 .main__header__wrapper {
-  @include outer-container;
-  position: relative;
+  @extend %width-wrapper;
 }
 
 .mailing-list {
-  @include position(absolute, 0 0 null null);
+  @include position(absolute, 0 1em null null);
+}
+
+.brand__description {
+  padding-bottom: 2em;
 }
 
 .main__content {
-  @include outer-container;
+  @extend %width-wrapper;
+}
+
+.startups__header {
+  @include border-top-radius(3px);
+  @include row();
+  line-height: 3em;
+}
+
+.startup {
+  @include row();
+  padding: 2em 0;
+}
+
+.startup__column_name {
+  @include span-columns(3);
+
+  .startups__header & {
+    padding-left: 1em;
+  }
 }
 
 .main__footer {
@@ -79,9 +117,14 @@ a {
 // THEME
 .main__header {
   background-color: $color-brand;
+  color: $color-brand-dark;
+}
+
+.brand__title {
   color: white;
 }
 
-.brand__description {
-  color: $color-gray;
+.startups__header {
+  color: $color-brand;
+  background-color: $color-brand-dark;
 }
