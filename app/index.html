@@ -32,21 +32,49 @@
             <input type="text" class="mailing-list__input" placeholder="Your email address">
             <input type="submit" class="mailing-list__submit" value="Sign up">
           </form>
-          <header class="startups__header">
-            <div class="startup__column_name">
-              <small>Name</small>
-            </div>
-          </header>
         </div>
       </header>
       <section class="main__content">
-        <ul class="startups">
-          <li class="startup">
-            <div class="startup__column_name">
-              <strong>Startup</strong>
-            </div>
-          </li>
-        </ul>
+        <table class="startups">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Founder</th>
+              <th>Cash on Hand</th>
+              <th>Burndown</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="startup-logo">✌</div>
+              </td>
+              <td class="stacked">
+                <strong>Startup Name</strong>
+                <small>Uber for startups</small>
+              </td>
+              <td>Andrew Liebchen</td>
+              <td>$300,000</td>
+              <td>$10,000/day</td>
+              <td><button>invest</button></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="startup-logo">✄</div>
+              </td>
+              <td class="stacked">
+                <strong>Startup Name</strong>
+                <small>Uber for startups</small>
+              </td>
+              <td>Andrew Liebchen</td>
+              <td>$300,000</td>
+              <td>$10,000/day</td>
+              <td><button>invest</button></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
       <footer class="main__footer">
         Footer

@@ -28,6 +28,10 @@ $color-brand-lighter: rgb(214, 243, 218);
 }
 
 // BASE
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: white;
   font-family: $font-family-base;
@@ -58,6 +62,7 @@ a {
   }
 }
 
+%small,
 small {
   font-size: 0.75em;
 }
@@ -69,16 +74,12 @@ ul {
   padding: 0;
 }
 
-// COMPONENTS
-
-// LAYOUT
-.main {
-
-}
 
 .main__header {
   @include clearfix;
-  padding: 2em 0 0;
+  padding: 2em 0 3em;
+  background-color: $color-brand;
+  color: $color-brand-dark;
 }
 
 .main__header__wrapper {
@@ -91,49 +92,81 @@ ul {
   right: 1em;
 }
 
+.brand__title {
+  color: white;
+}
+
 .brand__description {
   padding-bottom: 2em;
 }
 
 .main__content {
   @extend %width-wrapper;
+  margin-top: -50px;
 }
 
-.startups__header {
-  // @include border-top-radius(3px);
-  // @include row();
-  border-radius: 3px 3px 0 0;
-  line-height: 3em;
+.startups {
+  width: 100%;
 }
 
-.startup {
-  @include clearfix;
-  padding: 2em 0;
+thead {
+  background-color: $color-brand-dark;
+  color: $color-brand;
 }
 
-.startup__column_name {
-  // @include span-columns(3);
+tbody {
+  tr {
+    padding: 0.5em 0;
+    cursor: pointer;
 
-  .startups__header & {
-    padding-left: 1em;
+    &:hover {
+      background-color: #f0f0f0;
+    }
   }
+
+  td:first-child {
+    padding-right: 0;
+    width: 3em;
+  }
+}
+
+th,
+td {
+  text-align: left;
+  padding-left: 1em;
+  padding-right: 1em;
+  line-height: 3em;
+
+  &.stacked {
+    line-height: 1em;
+  }
+
+  strong {
+    display: block;
+  }
+
+  button {
+    float: right;
+  }
+
+  tbody & {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+
+.startup-logo {
+  $size: 1.25em;
+  font-size: 2em;
+  height: $size;
+  width: $size;
+  border-radius: $size / 2;
+  background-color: $color-gray;
+  color: white;
+  line-height: $size;
+  text-align: center;
 }
 
 .main__footer {
 
-}
-
-// THEME
-.main__header {
-  background-color: $color-brand;
-  color: $color-brand-dark;
-}
-
-.brand__title {
-  color: white;
-}
-
-.startups__header {
-  color: $color-brand;
-  background-color: $color-brand-dark;
 }
