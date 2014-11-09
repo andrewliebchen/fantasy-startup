@@ -3,6 +3,8 @@
 // endbower
 
 // VARIABLES
+$main-width: 1000px;
+
 $font-family-base: "helvetica neue", helvetica, arial, sans-serif;
 $font-family-heading: $font-family-base;
 
@@ -23,10 +25,10 @@ $color-brand-lighter: rgb(214, 243, 218);
 }
 
 %width-wrapper {
-  width: 1000px;
   margin: 0 auto;
   padding: 0 1em;
   position: relative;
+  width: $main-width;
 }
 
 // BASE
@@ -36,8 +38,8 @@ $color-brand-lighter: rgb(214, 243, 218);
 
 body {
   background-color: white;
-  font-family: $font-family-base;
   color: $color-gray;
+  font-family: $font-family-base;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -78,22 +80,22 @@ ul {
 
 input {
   appearance: none;
-  border: 0;
   background-color: $color-brand-light;
-  padding: 0.5em;
-  color: $color-brand-dark;
   border-radius: 3px;
-  height: 2em;
+  border: 0;
+  color: $color-brand-dark;
   float: left;
+  height: 2em;
   margin-left: 0.5em;
+  padding: 0.5em;
 
   &::placeholder {
     color: $color-brand;
   }
 
   &:focus {
-    outline: none;
     background-color: white;
+    outline: none;
 
     &::placeholder {
       color: $color-brand-lighter;
@@ -106,34 +108,34 @@ input[type="submit"] {
   appearance: none;
   background-color: $color-gray;
   background-image: none;
+  border-radius: 3px;
+  border: 0;
   color: white;
   font-weight: bold;
-  border: 0;
   line-height: 2em;
   padding: 0 0 0 1em;
-  border-radius: 3px;
 
   &:hover {
     background-color: $color-brand-dark;
   }
 
   &:focus {
-    outline: none;
     box-shadow: 0 0 0 1px white, 0 0 0 4px $color-brand;
+    outline: none;
   }
 
   span {
-    width: 2em;
+    border-left: 1px solid white;
     display: inline-block;
     margin-left: 1em;
-    border-left: 1px solid white;
     text-align: center;
+    width: 2em;
   }
 }
 
 input[type="submit"] {
-  padding: 0 1em;
   background-color: darken($color-brand, 10%);
+  padding: 0 1em;
 }
 
 input[type="submit"]:focus,
@@ -143,9 +145,9 @@ input:focus {
 
 .main__header {
   @include clearfix;
-  padding: 2em 0 3em;
   background-color: $color-brand;
   color: $color-brand-dark;
+  padding: 2em 0 3em;
 }
 
 .main__header__wrapper {
@@ -154,15 +156,15 @@ input:focus {
 
 .mailing-list {
   position: absolute;
-  top: 0.5em;
   right: 1em;
+  top: 0.5em;
 }
 
 .mailing-list__description {
-  float: left;
-  line-height: 2em;
   color: $color-brand-lighter;
+  float: left;
   font-weight: bold;
+  line-height: 2em;
 }
 
 .brand__title {
@@ -189,8 +191,8 @@ thead {
 
 tbody {
   tr {
-    padding: 0.5em 0;
     cursor: pointer;
+    padding: 0.5em 0;
 
     &:hover {
       background-color: $color-gray-lighter;
@@ -205,10 +207,10 @@ tbody {
 
 th,
 td {
-  text-align: left;
+  line-height: 3em;
   padding-left: 1em;
   padding-right: 1em;
-  line-height: 3em;
+  text-align: left;
 
   &.stacked {
     line-height: 1em;
@@ -223,19 +225,30 @@ td {
   }
 
   tbody & {
-    padding-top: 0.5em;
     padding-bottom: 0.5em;
+    padding-top: 0.5em;
   }
 }
 
 .startup-logo {
   $size: 1.25em;
+  background-color: $color-gray;
+  border-radius: $size / 2;
+  color: white;
   font-size: 2em;
   height: $size;
-  width: $size;
-  border-radius: $size / 2;
-  background-color: $color-gray;
-  color: white;
   line-height: $size;
   text-align: center;
+  width: $size;
+}
+
+.panel {
+  background-color: $color-gray;
+  bottom: 0;
+  color: $color-gray-lighter;
+  padding: 2em;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 33%;
 }
