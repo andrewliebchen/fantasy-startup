@@ -1,22 +1,22 @@
 $panel-width: 33%;
 
 .panel {
-  transition: transform 0.2s ease-in-out;
   background-color: $color-gray;
   bottom: 0;
   color: $color-gray-lighter;
   position: fixed;
   right: -($panel-width);
   top: 0;
+  transition: transform 0.2s ease-in-out;
   width: $panel-width;
 
   .scroll-container {
-    position: absolute;
-    top: 7.75em;
-    left: 0;
     bottom: 4em;
-    right: 0;
+    left: 0;
     overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 7.75em;
   }
 
   .show-panel & {
@@ -37,8 +37,8 @@ $panel-width: 33%;
 .panel__title {
   .startup-logo {
     float: left;
-    margin-right: 0.25em;
     font-size: 3em;
+    margin-right: 0.25em;
   }
 }
 
@@ -48,8 +48,8 @@ $panel-width: 33%;
   }
 
   table {
-    width: 100%;
     margin-top: 0.5em;
+    width: 100%;
   }
 
   thead {
@@ -71,10 +71,10 @@ $panel-width: 33%;
 }
 
 .panel__footer {
-  padding: 1em 2em;
-  position: absolute;
   bottom: 0;
   left: 0;
+  padding: 1em 2em;
+  position: absolute;
   right: 0;
 
   button {
