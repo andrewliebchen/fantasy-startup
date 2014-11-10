@@ -13,7 +13,6 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
   </head>
   <body>
@@ -28,11 +27,11 @@
         <div class="main__header__wrapper">
           <h1 class="brand__title">Fantasy Startup</h1>
           <p class="brand__description">Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac.</p>
-          <form class="mailing-list">
+          <!-- <form class="mailing-list">
             <p class="mailing-list__description">Nullam in dui mauris</p>
             <input type="text" class="mailing-list__input" placeholder="Your email address">
             <input type="submit" class="mailing-list__submit" value="Sign up">
-          </form>
+          </form> -->
         </div>
       </header>
       <section class="main__content">
@@ -48,7 +47,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-toggle="panel">
               <td>
                 <div class="startup-logo">✌</div>
               </td>
@@ -168,6 +167,13 @@
         <div class="panel__content">
           <h3>Expenses</h3>
           <table>
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th>Spent</th>
+                <th>Cash on hand</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
                 <td>1</td>
