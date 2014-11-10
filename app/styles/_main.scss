@@ -1,0 +1,52 @@
+.main__content {
+  @extend %width-wrapper;
+  margin-top: -50px;
+}
+
+.startups {
+  width: 100%;
+
+  thead {
+    background-color: darken($color-brand, 15%);
+    color: $color-brand;
+  }
+
+  tbody {
+    tr {
+      cursor: pointer;
+      padding: 0.5em 0;
+
+      &:hover {
+        background-color: $color-gray-lighter;
+      }
+    }
+
+    td:first-child {
+      padding-right: 0;
+      width: 3em;
+    }
+  }
+
+  th,
+  td {
+    line-height: 3em;
+    padding-left: 1em;
+    padding-right: 1em;
+
+    &.stacked {
+      line-height: 1em;
+    }
+  }
+}
+
+.startup-logo {
+  $size: 1.25em;
+  background-color: $color-gray;
+  border-radius: $size / 2;
+  color: white;
+  font-size: 2em;
+  height: $size;
+  line-height: $size;
+  text-align: center;
+  width: $size;
+}

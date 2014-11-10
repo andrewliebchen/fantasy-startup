@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  color: $color-gray;
+  font-family: $font-family-base;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-family-heading;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  padding-bottom: 1em;
+}
+
+a {
+  color: $color-brand;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+%small,
+small {
+  font-size: 0.75em;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  appearance: none;
+  background-color: $color-brand-light;
+  border-radius: 3px;
+  border: 0;
+  color: $color-brand-dark;
+  float: left;
+  height: 2em;
+  margin-left: 0.5em;
+  padding: 0.5em;
+
+  &::placeholder {
+    color: $color-brand;
+  }
+
+  &:focus {
+    background-color: white;
+    outline: none;
+
+    &::placeholder {
+      color: $color-brand-lighter;
+    }
+  }
+}
+
+button,
+input[type="submit"] {
+  appearance: none;
+  background-color: $color-brand;
+  background-image: none;
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  font-weight: bold;
+  line-height: 2em;
+  padding: 0 0 0 1em;
+
+  &:hover {
+    background-color: darken($color-brand, 10%);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 1px white, 0 0 0 4px $color-brand;
+    outline: none;
+  }
+
+  span {
+    border-left: 1px solid white;
+    display: inline-block;
+    margin-left: 1em;
+    text-align: center;
+    width: 2em;
+  }
+}
+
+input[type="submit"] {
+  background-color: darken($color-brand, 10%);
+  padding: 0 1em;
+
+  &:hover {
+    background-color: $color-brand-dark;
+  }
+}
+
+input[type="submit"]:focus,
+input:focus {
+  box-shadow: 0 0 0 1px $color-brand, 0 0 0 4px $color-brand-dark;
+}
+
+dt {
+  @extend %small;
+  font-weight: bold;
+  color: $color-gray-light;
+}
+
+dd {
+  margin: 0;
+}
+
+tbody {
+  th,
+  td {
+    padding: 0.5em;
+  }
+}
+
+th,
+td {
+  text-align: left;
+
+  strong {
+    display: block;
+  }
+
+  button {
+    float: right;
+  }
+}
+
+td {
+  padding-left: 1em;
+  padding-right: 1em;
+}

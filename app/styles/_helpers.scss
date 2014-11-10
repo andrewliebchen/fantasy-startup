@@ -1,0 +1,31 @@
+@mixin clearfix {
+  &:after {
+    content:"";
+    display:table;
+    clear:both;
+  }
+}
+
+%width-wrapper {
+  margin: 0 auto;
+  padding: 0 1em;
+  position: relative;
+  width: $main-width;
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.column {
+  width: 50%;
+  float: left;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}

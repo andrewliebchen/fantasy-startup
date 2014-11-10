@@ -1,0 +1,31 @@
+.main__header {
+  @include clearfix;
+  background-color: $color-brand;
+  color: $color-brand-dark;
+  padding: 2em 0 3em;
+}
+
+.main__header__wrapper {
+  @extend %width-wrapper;
+}
+
+.mailing-list {
+  position: absolute;
+  right: 1em;
+  top: 0.5em;
+}
+
+.mailing-list__description {
+  color: $color-brand-lighter;
+  float: left;
+  font-weight: bold;
+  line-height: 2em;
+}
+
+.brand__title {
+  color: white;
+}
+
+.brand__description {
+  padding: 1em 0 2em;
+}
