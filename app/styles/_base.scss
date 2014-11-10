@@ -94,14 +94,14 @@ input[type="submit"] {
     box-shadow: 0 0 0 1px white, 0 0 0 4px $color-brand-light;
     outline: none;
   }
+}
 
-  span {
-    border-left: 1px solid white;
-    display: inline-block;
-    margin-left: 1em;
-    text-align: center;
-    width: 2em;
-  }
+.button__count {
+  border-left: 1px solid white;
+  display: inline-block;
+  margin-left: 1em;
+  text-align: center;
+  width: 2em;
 }
 
 input[type="submit"] {
