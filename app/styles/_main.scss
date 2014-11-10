@@ -50,3 +50,28 @@
   text-align: center;
   width: $size;
 }
+
+.progress {
+  width: 150px;
+  height: 1em;
+  border: 2px solid $color-brand;
+  position: relative;
+}
+
+.progress__fill {
+  background-color: $color-brand;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  z-index: 1;
+}
+
+.progress__marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $color-brand-lighter;
+  border-right: 2px solid $color-brand;
+}
