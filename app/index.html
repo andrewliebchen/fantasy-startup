@@ -62,16 +62,61 @@
   </div>
 
   <aside class="panel">
+    <div id="startup_detail"></div>
+  </aside>
+  <div class="panel__background"></div>
+
+  <script id="startups_template" type="text/x-handlebars-template">
+    <table>
+      {{#each row}}
+        <tr data-toggle="panel" data-startup-id="{{rowNumber}}">
+          <td>
+            <div class="startup-logo" data-icon="{{logo}}"></div>
+          </td>
+          <td class="stacked">
+            <strong>{{name}}</strong>
+            <small>{{tagline}}</small>
+          </td>
+          <td>
+            {{#if founderurl}}
+              <a href="{{founderurl}}" target="_blank">
+                {{founder}}
+              </a>
+            {{else}}
+              {{founder}}
+            {{/if}}
+          </td>
+          <td>{{day1}}</td>
+          <td>
+            {{totaldailyexpenses}}
+            <small>/day</small>
+          </td>
+          <td>
+            <div class="progress">
+              <div class="progress__fill" style="width:33%"></div>
+              <div class="progress__marker" style="width:50%"></div>
+            </div>
+          </td>
+          <td>
+            <button>
+              invest
+              <span class="button__count">{{investorcount}}</span>
+            </button>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </script>
+
+  <script id="startup_detail_template" type="text/x-handlebars-template">
     <header class="panel__title">
-      <div class="startup-logo" data-icon="umbrella-weather"></div>
-      <h2>Startup Name</h2>
-      Uber for startups
+      <div class="startup-logo" data-icon="{{logo}}"></div>
+      <h2>{{name}}</h2>
+      {{tagline}}
     </header>
     <div class="scroll-container">
       <div class="panel__content">
-        <p>
-          Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.
-        </p>
+        <p>{{description}}</p>
         <div class="clearfix">
           <div class="column">
             <dl>
@@ -178,64 +223,6 @@
         <span class="button__count">0</span>
       </button>
     </footer>
-  </aside>
-  <div class="panel__background"></div>
-
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-      // Use tabletop to get the the startup info
-      var URL = "1orGnmev3T59ybT9WkKtzlmuLERL-QYy_3dQgNlVlIpw";
-      Tabletop.init( { key: URL, callback: showStartups, simpleSheet: true } );
-
-      // Populate the startup table
-      function showStartups(data) {
-        var source   = $("#startups_template").html();
-        var template = Handlebars.compile(source);
-        $("#startups").html(template({row: data}));
-      }
-    });
-  </script>
-
-  <script id="startups_template" type="text/x-handlebars-template">
-    <table>
-      {{#each row}}
-        <tr data-toggle="panel" data-startup-id="{{rowNumber}}">
-          <td>
-            <div class="startup-logo" data-icon="{{logo}}"></div>
-          </td>
-          <td class="stacked">
-            <strong>{{name}}</strong>
-            <small>{{tagline}}</small>
-          </td>
-          <td>
-            {{#if founderurl}}
-              <a href="{{founderurl}}" target="_blank">
-                {{founder}}
-              </a>
-            {{else}}
-              {{founder}}
-            {{/if}}
-          </td>
-          <td>{{day1}}</td>
-          <td>
-            {{totaldailyexpenses}}
-            <small>/day</small>
-          </td>
-          <td>
-            <div class="progress">
-              <div class="progress__fill" style="width:33%"></div>
-              <div class="progress__marker" style="width:50%"></div>
-            </div>
-          </td>
-          <td>
-            <button>
-              invest
-              <span class="button__count">{{investorcount}}</span>
-            </button>
-          </td>
-        </tr>
-      {{/each}}
-    </table>
   </script>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
