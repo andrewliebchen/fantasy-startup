@@ -226,36 +226,33 @@
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/tabletop/src/tabletop.js"></script>
-  <script src="bower_components/sheetsee/js/sheetsee.js"></script>
+  <script src="bower_components/handlebars/handlebars.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
   <!-- sheetsee -->
-  <script id="startups_template" type="text/html">
+  <script id="startups_template" type="text/x-handlebars-template">
     <table>
-        {{#rows}}
+        {{#each row}}
           <tr><td>{{id}}</td><td>{{name}}</td><td>{{tagline}}</td></tr>
-        {{/rows}}
+        {{/each}}
     </table>
   </script>
 
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-        var gData
-        var URL = "1orGnmev3T59ybT9WkKtzlmuLERL-QYy_3dQgNlVlIpw"
-        Tabletop.init( { key: URL, callback: showStartups, simpleSheet: true } )
-    })
-    function showStartups(data) {
-      console.log(data)
-      var tableOptions = {
-                          "data": data,
-                          "pagination": 10,
-                          "tableDiv": "#statups",
-                          "filterDiv": "#startups_filter",
-                          "templateID": "startups"
-                          }
-      Sheetsee.makeTable(tableOptions)
-    }
+        var URL = "1orGnmev3T59ybT9WkKtzlmuLERL-QYy_3dQgNlVlIpw";
+        Tabletop.init( { key: URL, callback: showStartups, simpleSheet: true } );
+
+        function showStartups(data) {
+          console.log(data);
+          var rows = {rows: [data]};
+          console.log(rows);
+          var source   = $("#startups_template").html();
+          var template = Handlebars.compile(source);
+          $("#startups").html(template({row: data}));
+        }
+    });
   </script>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
