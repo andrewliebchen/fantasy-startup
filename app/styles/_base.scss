@@ -138,6 +138,7 @@ tbody {
 th,
 td {
   text-align: left;
+  position: relative;
 
   strong {
     display: block;
@@ -145,6 +146,15 @@ td {
 
   button {
     float: right;
+  }
+
+  a {
+    color: $color-gray;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-brand;
+    }
   }
 }
 

@@ -12,6 +12,14 @@
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
+
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/tabletop/src/tabletop.js"></script>
+  <script src="bower_components/handlebars/handlebars.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 </head>
 
 <body>
@@ -43,59 +51,12 @@
             <th>Cash on Hand</th>
             <th>Expenses</th>
             <th>Burndown</th>
-            <th></th>
+            <th>
+              <span class="countdown">Day 1 of 14</span>
+            </th>
           </tr>
         </thead>
-        <tbody>
-          <tr data-toggle="panel">
-            <td>
-              <div class="startup-logo" data-icon="armchair-chair"></div>
-            </td>
-            <td class="stacked">
-              <strong>Startup Name</strong>
-              <small>Uber for startups</small>
-            </td>
-            <td>Andrew Liebchen</td>
-            <td>$300,000</td>
-            <td>$10,000/day</td>
-            <td>
-              <div class="progress">
-                <div class="progress__fill" style="width:33%"></div>
-                <div class="progress__marker" style="width:50%"></div>
-              </div>
-            </td>
-            <td>
-              <button>
-                invest
-                <span class="button__count">3</span>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="startup-logo" data-icon="barbecue-eat-food"></div>
-            </td>
-            <td class="stacked">
-              <strong>Startup Name</strong>
-              <small>Uber for startups</small>
-            </td>
-            <td>Andrew Liebchen</td>
-            <td>$300,000</td>
-            <td>$10,000/day</td>
-            <td>
-              <div class="progress">
-                <div class="progress__fill" style="width:33%"></div>
-                <div class="progress__marker" style="width:50%"></div>
-              </div>
-            </td>
-            <td>
-              <button>
-                invest
-                <span class="button__count">0</span>
-              </button>
-            </td>
-          </tr>
-        </tbody>
+        <tbody id="startups"></tbody>
       </table>
     </section>
   </div>
@@ -220,39 +181,61 @@
   </aside>
   <div class="panel__background"></div>
 
-  <div id="startups"></div> <!-- TEMP -->
-
-  <!-- build:js(.) scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/tabletop/src/tabletop.js"></script>
-  <script src="bower_components/handlebars/handlebars.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
-
-  <!-- sheetsee -->
-  <script id="startups_template" type="text/x-handlebars-template">
-    <table>
-        {{#each row}}
-          <tr><td>{{id}}</td><td>{{name}}</td><td>{{tagline}}</td></tr>
-        {{/each}}
-    </table>
-  </script>
-
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-        var URL = "1orGnmev3T59ybT9WkKtzlmuLERL-QYy_3dQgNlVlIpw";
-        Tabletop.init( { key: URL, callback: showStartups, simpleSheet: true } );
+      // Use tabletop to get the the startup info
+      var URL = "1orGnmev3T59ybT9WkKtzlmuLERL-QYy_3dQgNlVlIpw";
+      Tabletop.init( { key: URL, callback: showStartups, simpleSheet: true } );
 
-        function showStartups(data) {
-          console.log(data);
-          var rows = {rows: [data]};
-          console.log(rows);
-          var source   = $("#startups_template").html();
-          var template = Handlebars.compile(source);
-          $("#startups").html(template({row: data}));
-        }
+      // Populate the startup table
+      function showStartups(data) {
+        var source   = $("#startups_template").html();
+        var template = Handlebars.compile(source);
+        $("#startups").html(template({row: data}));
+      }
     });
+  </script>
+
+  <script id="startups_template" type="text/x-handlebars-template">
+    <table>
+      {{#each row}}
+        <tr data-toggle="panel" data-startup-id="{{rowNumber}}">
+          <td>
+            <div class="startup-logo" data-icon="{{logo}}"></div>
+          </td>
+          <td class="stacked">
+            <strong>{{name}}</strong>
+            <small>{{tagline}}</small>
+          </td>
+          <td>
+            {{#if founderurl}}
+              <a href="{{founderurl}}" target="_blank">
+                {{founder}}
+              </a>
+            {{else}}
+              {{founder}}
+            {{/if}}
+          </td>
+          <td>{{day1}}</td>
+          <td>
+            {{totaldailyexpenses}}
+            <small>/day</small>
+          </td>
+          <td>
+            <div class="progress">
+              <div class="progress__fill" style="width:33%"></div>
+              <div class="progress__marker" style="width:50%"></div>
+            </div>
+          </td>
+          <td>
+            <button>
+              invest
+              <span class="button__count">{{investorcount}}</span>
+            </button>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
   </script>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
