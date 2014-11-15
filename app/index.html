@@ -69,13 +69,18 @@
   <script id="startups_template" type="text/x-handlebars-template">
     <table>
       {{#each row}}
-        <tr data-toggle="panel" data-startup-id="{{rowNumber}}">
+        <tr class="{{#if stealthmode}}in-stealth-mode{{/if}}" data-toggle="panel" data-startup-id="{{rowNumber}}">
           <td>
             <div class="startup-logo" data-icon="{{logo}}"></div>
           </td>
           <td class="stacked">
-            <strong>{{name}}</strong>
-            <small>{{tagline}}</small>
+            {{#unless stealthmode}}
+              <strong>{{name}}</strong>
+              <small>{{tagline}}</small>
+            {{else}}
+              <strong>●●●●●●●</strong>
+              <small>Stealth mode</small>
+            {{/unless}}
           </td>
           <td>
             {{#if founderurl}}
@@ -88,8 +93,10 @@
           </td>
           <td>{{cashonhand}}</td>
           <td>
-            {{totaldailyexpenses}}
-            <small>/day</small>
+            {{#if totaldailyexpenses}}
+              {{totaldailyexpenses}}
+              <small>/day</small>
+            {{/if}}
           </td>
           <td>
             <div class="progress">
@@ -100,7 +107,13 @@
           <td>
             <button>
               invest
-              <span class="button__count">{{investorcount}}</span>
+              <span class="button__count">
+                {{#if investorcount}}
+                  {{investorcount}}
+                {{else}}
+                  0
+                {{/if}}
+              </span>
             </button>
           </td>
         </tr>
@@ -110,203 +123,231 @@
 
   <script id="startup_detail_template" type="text/x-handlebars-template">
     <header class="panel__title">
-      <div class="startup-logo" data-icon="{{logo}}"></div>
-      <h2>{{name}}</h2>
-      {{tagline}}
+      <div class="startup-logo{{#if stealthmode}} in-stealth-mode{{/if}}" data-icon="{{logo}}"></div>
+      {{#unless stealthmode}}
+        <h2>{{name}}</h2>
+        {{tagline}}
+      {{else}}
+        <h2>●●●●●●●</h2>
+        Stealth mode
+      {{/unless}}
     </header>
-    <div class="scroll-container">
-      <div class="panel__content">
-        <p>{{description}}</p>
-        <div class="clearfix">
-          <div class="column">
-            <dl>
-              <dt>Stage</dt>
-              <dd>{{stage}}</dd>
-            </dl>
-            <dl>
-              <dt>Daily expenses</dt>
-              <dd>{{totaldailyexpenses}}</dd>
-            </dl>
-            <dl>
-              <dt>Cash on hand</dt>
-              <dd>{{cashonhand}}</dd>
-            </dl>
-          </div>
-          <div class="column">
-            <dl>
-              <dt>Tech</dt>
-              <dd>{{tech}}</dd>
-            </dl>
-            <dl>
-              <dt>HQ location</dt>
-              <dd>{{hqlocation}}</dd>
-            </dl>
-            <dl>
-              <dt>Founder</dt>
-              {{#if founderurl}}
-                <dd>
-                  <a href="{{founderurl}}" target="_blank">
-                    {{founder}}
-                  </a>
-                </dd>
-              {{else}}
-                <dd>{{founder}}</dd>
-              {{/if}}
-            </dl>
+    {{#unless stealthmode}}
+      <div class="scroll-container">
+        <div class="panel__content">
+          <p>{{description}}</p>
+          <div class="clearfix">
+            <div class="column">
+              <dl>
+                <dt>Stage</dt>
+                <dd>{{stage}}</dd>
+              </dl>
+              <dl>
+                <dt>Daily expenses</dt>
+                <dd>{{totaldailyexpenses}}</dd>
+              </dl>
+              <dl>
+                <dt>Cash on hand</dt>
+                <dd>{{cashonhand}}</dd>
+              </dl>
+            </div>
+            <div class="column">
+              <dl>
+                <dt>Tech</dt>
+                <dd>{{tech}}</dd>
+              </dl>
+              <dl>
+                <dt>HQ location</dt>
+                <dd>{{hqlocation}}</dd>
+              </dl>
+              <dl>
+                <dt>Founder</dt>
+                {{#if founderurl}}
+                  <dd>
+                    <a href="{{founderurl}}" target="_blank">
+                      {{founder}}
+                    </a>
+                  </dd>
+                {{else}}
+                  <dd>{{founder}}</dd>
+                {{/if}}
+              </dl>
+            </div>
           </div>
         </div>
+        <div class="panel__content">
+          <h3>Team</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Value</th>
+                <th>Daily salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>CEO</th>
+                <td>{{ceotype}}</td>
+                <td>{{ceosalary}}</td>
+              </tr>
+              <tr>
+                <th>CTO</th>
+                <td>{{ctotype}}</td>
+                <td>{{ctosalary}}</td>
+              </tr>
+              <tr>
+                <th>Lead Engineer</th>
+                <td>{{leadengineertype}}</td>
+                <td>{{leadengineersalary}}</td>
+              </tr>
+              <tr>
+                <th>Designer</th>
+                <td>{{designertype}}</td>
+                <td>{{designersalary}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel__content">
+          <h3>Expenses</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Spent</th>
+                <th>Cash on hand</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#if day1expense}}
+                <tr>
+                  <td>1</td>
+                  <td>{{#if day1expense}}{{day1expense}}{{/if}}</td>
+                  <td>{{#if day1cash}}{{day1cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day2expense}}
+                <tr>
+                  <td>2</td>
+                  <td>{{#if day2expense}}{{day2expense}}{{/if}}</td>
+                  <td>{{#if day2cash}}{{day2cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day3expense}}
+                <tr>
+                  <td>3</td>
+                  <td>{{#if day3expense}}{{day3expense}}{{/if}}</td>
+                  <td{{#if day3cash}}{{day3cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day4expense}}
+                <tr>
+                  <td>4</td>
+                  <td>{{#if day4expense}}{{day4expense}}{{/if}}</td>
+                  <td>{{#if day4cash}}{{day4cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day5expense}}
+                <tr>
+                  <td>5</td>
+                  <td>{{#if day5expense}}{{day5expense}}{{/if}}</td>
+                  <td>{{#if day5cash}}{{day5cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day6expense}}
+                <tr>
+                  <td>6</td>
+                  <td>{{#if day6expense}}{{day6expense}}{{/if}}</td>
+                  <td>{{#if day6cash}}{{day6cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day7expense}}
+                <tr>
+                  <td>7</td>
+                  <td>{{#if day7expense}}{{day7expense}}{{/if}}</td>
+                  <td>{{#if day7cash}}{{day7cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day8expense}}
+                <tr>
+                  <td>8</td>
+                  <td>{{#if day8expense}}{{day8expense}}{{/if}}</td>
+                  <td>{{#if day8cash}}{{day8cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day9expense}}
+                <tr>
+                  <td>9</td>
+                  <td>{{#if day9expense}}{{day9expense}}{{/if}}</td>
+                  <td>{{#if day9cash}}{{day9cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day210expense}}
+                <tr>
+                  <td>10</td>
+                  <td>{{#if day10expense}}{{day10expense}}{{/if}}</td>
+                  <td>{{#if day10cash}}{{day10cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day11expense}}
+                <tr>
+                  <td>11</td>
+                  <td>{{#if day11expense}}{{day11expense}}{{/if}}</td>
+                  <td>{{#if day11cash}}{{day11cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day12expense}}
+                <tr>
+                  <td>12</td>
+                  <td>{{#if day12expense}}{{day12expense}}{{/if}}</td>
+                  <td>{{#if day12cash}}{{day12cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day13expense}}
+                <tr>
+                  <td>13</td>
+                  <td>{{#if day13expense}}{{day13expense}}{{/if}}</td>
+                  <td>{{#if day13cash}}{{day13cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+              {{#if day14expense}}
+                <tr>
+                  <td>14</td>
+                  <td>{{#if day14expense}}{{day14expense}}{{/if}}</td>
+                  <td>{{#if day14cash}}{{day14cash}}{{/if}}</td>
+                </tr>
+              {{/if}}
+            </tbody>
+          </table>
+        </div>
       </div>
+    {{else}}
       <div class="panel__content">
-        <h3>Team</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Position</th>
-              <th>Value</th>
-              <th>Daily salary</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>CEO</th>
-              <td>{{ceotype}}</td>
-              <td>{{ceosalary}}</td>
-            </tr>
-            <tr>
-              <th>CTO</th>
-              <td>{{ctotype}}</td>
-              <td>{{ctosalary}}</td>
-            </tr>
-            <tr>
-              <th>Lead Engineer</th>
-              <td>{{leadengineertype}}</td>
-              <td>{{leadengineersalary}}</td>
-            </tr>
-            <tr>
-              <th>Designer</th>
-              <td>{{designertype}}</td>
-              <td>{{designersalary}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <dl>
+          <dt>Founder</dt>
+          {{#if founderurl}}
+            <dd>
+              <a href="{{founderurl}}" target="_blank">
+                {{founder}}
+              </a>
+            </dd>
+          {{else}}
+            <dd>{{founder}}</dd>
+          {{/if}}
+        </dl>
       </div>
-      <div class="panel__content">
-        <h3>Expenses</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Day</th>
-              <th>Spent</th>
-              <th>Cash on hand</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#if day1expense}}
-              <tr>
-                <td>1</td>
-                <td>{{#if day1expense}}{{day1expense}}{{/if}}</td>
-                <td>{{#if day1cash}}{{day1cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day2expense}}
-              <tr>
-                <td>2</td>
-                <td>{{#if day2expense}}{{day2expense}}{{/if}}</td>
-                <td>{{#if day2cash}}{{day2cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day3expense}}
-              <tr>
-                <td>3</td>
-                <td>{{#if day3expense}}{{day3expense}}{{/if}}</td>
-                <td{{#if day3cash}}{{day3cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day4expense}}
-              <tr>
-                <td>4</td>
-                <td>{{#if day4expense}}{{day4expense}}{{/if}}</td>
-                <td>{{#if day4cash}}{{day4cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day5expense}}
-              <tr>
-                <td>5</td>
-                <td>{{#if day5expense}}{{day5expense}}{{/if}}</td>
-                <td>{{#if day5cash}}{{day5cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day6expense}}
-              <tr>
-                <td>6</td>
-                <td>{{#if day6expense}}{{day6expense}}{{/if}}</td>
-                <td>{{#if day6cash}}{{day6cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day7expense}}
-              <tr>
-                <td>7</td>
-                <td>{{#if day7expense}}{{day7expense}}{{/if}}</td>
-                <td>{{#if day7cash}}{{day7cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day8expense}}
-              <tr>
-                <td>8</td>
-                <td>{{#if day8expense}}{{day8expense}}{{/if}}</td>
-                <td>{{#if day8cash}}{{day8cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day9expense}}
-              <tr>
-                <td>9</td>
-                <td>{{#if day9expense}}{{day9expense}}{{/if}}</td>
-                <td>{{#if day9cash}}{{day9cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day210expense}}
-              <tr>
-                <td>10</td>
-                <td>{{#if day10expense}}{{day10expense}}{{/if}}</td>
-                <td>{{#if day10cash}}{{day10cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day11expense}}
-              <tr>
-                <td>11</td>
-                <td>{{#if day11expense}}{{day11expense}}{{/if}}</td>
-                <td>{{#if day11cash}}{{day11cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day12expense}}
-              <tr>
-                <td>12</td>
-                <td>{{#if day12expense}}{{day12expense}}{{/if}}</td>
-                <td>{{#if day12cash}}{{day12cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day13expense}}
-              <tr>
-                <td>13</td>
-                <td>{{#if day13expense}}{{day13expense}}{{/if}}</td>
-                <td>{{#if day13cash}}{{day13cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-            {{#if day14expense}}
-              <tr>
-                <td>14</td>
-                <td>{{#if day14expense}}{{day14expense}}{{/if}}</td>
-                <td>{{#if day14cash}}{{day14cash}}{{/if}}</td>
-              </tr>
-            {{/if}}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    {{/unless}}
     <footer class="panel__footer">
       <button>
         invest
-        <span class="button__count">0</span>
+        <span class="button__count">
+          {{#if investorcount}}
+            {{investorcount}}
+          {{else}}
+            0
+          {{/if}}
+        </span>
       </button>
     </footer>
   </script>

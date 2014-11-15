@@ -40,6 +40,11 @@ $panel-width: 33%;
     float: left;
     font-size: 3em;
     margin-right: 0.25em;
+
+    &.in-stealth-mode {
+      background-color: transparent;
+      border: 2px dashed $color-gray;
+    }
   }
 }
 

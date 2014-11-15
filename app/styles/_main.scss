@@ -49,6 +49,11 @@
   line-height: $size;
   text-align: center;
   width: $size;
+
+  .in-stealth-mode & {
+    background-color: transparent;
+    border: 1px dashed $color-gray;
+  }
 }
 
 .progress {
