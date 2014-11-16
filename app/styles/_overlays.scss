@@ -1,15 +1,48 @@
 $panel-width: 33%;
+$modal-width: 600px;
 
-.panel {
+// SHARED
+%overlay-base {
   background-color: $color-gray;
-  bottom: 0;
   color: $color-gray-lighter;
+  transition: transform 0.2s ease-out;
+  z-index: 11;
+
+
+  button {
+    &:focus {
+      box-shadow: 0 0 0 1px lighten($color-gray, 10%), 0 0 0 4px darken($color-brand, 15%);
+    }
+  }
+}
+
+.overlay__background {
+  background-color: rgba($color-brand-light, 0.6);
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 0.3s linear;
+  z-index: 10;
+
+  .show-panel &,
+  .show-modal & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// PANEL
+.panel {
+  @extend %overlay-base;
+  bottom: 0;
   position: fixed;
   right: -($panel-width);
   top: 0;
-  transition: transform 0.2s ease-in-out;
   width: $panel-width;
-  z-index: 11;
 
   .scroll-container {
     bottom: 4em;
@@ -85,27 +118,27 @@ $panel-width: 33%;
 
   button {
     float: right;
-
-    &:focus {
-      box-shadow: 0 0 0 1px lighten($color-gray, 10%), 0 0 0 4px darken($color-brand, 15%);
-    }
   }
 }
 
-.panel__background {
-  transition: opacity 0.3s linear;
-  position: fixed;
+// MODAL
+.modal {
+  @extend %overlay-base;
+  border-radius: 0 0 3px 3px;
+  left: 50%;
+  margin-left: -($modal-width / 2);
+  padding: 1em 2em 2em;
+  position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba($color-brand-light, 0.6);
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0;
+  transform: translate3d(0, -100%, 0);
+  width: $modal-width;
 
-  .show-panel & {
-    opacity: 1;
-    pointer-events: auto;
+  button {
+    margin-top: 1em;
+    padding: 0 1em;
+  }
+
+  .show-modal & {
+    transform: translate3d(0, 0, 0);
   }
 }

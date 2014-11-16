@@ -21,19 +21,26 @@ $(document).ready(function() {
       var rowID    = $(this).data('startup-id') - 1;
       var source   = $("#startup_detail_template").html();
       var template = Handlebars.compile(source);
-      $("#startup_detail").html(template(startupsData[rowID]));
+      $("#panel__contents").html(template(startupsData[rowID]));
 
-      $('body').toggleClass('show-panel');
+      $('body').addClass('show-panel');
     });
   }
 
   // Close the panel when click outside panel
-  $(document).on('click', '.panel__background', function(){
-    $('body').removeClass('show-panel');
+  $(document).on('click', '.overlay__background', function(){
+    $('body').removeClass('show-panel')
+             .removeClass('show-modal');
   });
 
-  // make this more specific
+  // Make this more specific
   $(document).on('click', 'button', function(event) {
     event.stopPropagation();
+  });
+
+  // Toggle the modal
+  $(document).on('click', '[data-toggle="modal"]', function(event){
+    event.preventDefault();
+    $('body').toggleClass('show-modal');
   });
 });

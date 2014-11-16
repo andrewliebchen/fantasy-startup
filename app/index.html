@@ -40,8 +40,8 @@
           </div>
         </div>
         <nav class="nav">
-          <a>About</a>
-          <a>Updates</a>
+          <a data-toggle="modal">About</a>
+          <a data-toggle="modal">Updates</a>
         </nav>
       </div>
     </header>
@@ -68,9 +68,14 @@
   </div>
 
   <aside class="panel">
-    <div id="startup_detail"></div>
+    <div id="panel__contents"></div>
   </aside>
-  <div class="panel__background"></div>
+  <div class="modal">
+    <h2>What's this then?</h2>
+    <p>Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa.</p>
+    <button data-toggle="modal">Rock on</button>
+  </div>
+  <div class="overlay__background"></div>
 
   <script id="startups_template" type="text/x-handlebars-template">
     <table>
