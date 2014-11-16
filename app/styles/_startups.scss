@@ -1,13 +1,25 @@
-.main__content {
-  @extend %width-wrapper;
-  margin-top: -50px;
+.startups {
+  position: relative;
+
+  &::before {
+    content: "";
+    height: 3em;
+    background-color: $color-brand-dark;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
-.startups {
+.startups__wrapper {
+  @extend %width-wrapper;
+}
+
+.startups__list {
   width: 100%;
 
   thead {
-    background-color: darken($color-brand, 15%);
     color: $color-brand;
   }
 
@@ -40,15 +52,7 @@
 }
 
 .startup-logo {
-  $size: 1.25em;
-  background-color: $color-gray;
-  border-radius: $size / 2;
-  color: white;
-  font-size: 2em;
-  height: $size;
-  line-height: $size;
-  text-align: center;
-  width: $size;
+  @extend %logo;
 
   .in-stealth-mode & {
     background-color: transparent;
@@ -83,5 +87,5 @@
 
 .countdown {
   color: white;
-  padding-left: 0.5em;
+  float: right;
 }

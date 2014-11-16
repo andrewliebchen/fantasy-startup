@@ -32,32 +32,38 @@
   <div class="main">
     <header class="main__header">
       <div class="main__header__wrapper">
-        <h1 class="brand__title">Fantasy Startup</h1>
-        <p class="brand__description">Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac.</p>
-        <!-- <form class="mailing-list">
-          <p class="mailing-list__description">Nullam in dui mauris</p>
-          <input type="text" class="mailing-list__input" placeholder="Your email address">
-          <input type="submit" class="mailing-list__submit" value="Sign up">
-        </form> -->
+        <div class="brand">
+          <a href="/" class="brand__logo">FS</a>
+          <div class="brand__title">
+            <h1>Fantasy Startup</h1>
+            Like fantasy football, but with startups
+          </div>
+        </div>
+        <nav class="nav">
+          <a>About</a>
+          <a>Updates</a>
+        </nav>
       </div>
     </header>
-    <section class="main__content">
-      <table class="startups">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Founder</th>
-            <th>Cash on Hand</th>
-            <th>Expenses</th>
-            <th>Burndown</th>
-            <th>
-              <span class="countdown">Day 1 of 14</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody id="startups"></tbody>
-      </table>
+    <section class="startups">
+      <div class="startups__wrapper">
+        <table class="startups__list">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Founder</th>
+              <th>Cash on Hand</th>
+              <th>Expenses</th>
+              <th>Burndown</th>
+              <th>
+                <span class="countdown">Day 1 of 14</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="startups"></tbody>
+        </table>
+      </div>
     </section>
   </div>
 
@@ -71,7 +77,7 @@
       {{#each row}}
         <tr class="{{#if stealthmode}}in-stealth-mode{{/if}}" data-toggle="panel" data-startup-id="{{rowNumber}}">
           <td>
-            <div class="startup-logo" data-icon="{{logo}}"></div>
+            <div class="startup-logo">{{initals}}</div>
           </td>
           <td class="stacked">
             {{#unless stealthmode}}
@@ -123,7 +129,7 @@
 
   <script id="startup_detail_template" type="text/x-handlebars-template">
     <header class="panel__title">
-      <div class="startup-logo{{#if stealthmode}} in-stealth-mode{{/if}}" data-icon="{{logo}}"></div>
+      <div class="startup-logo{{#if stealthmode}} in-stealth-mode{{/if}}">{{initals}}</div>
       {{#unless stealthmode}}
         <h2>{{name}}</h2>
         {{tagline}}

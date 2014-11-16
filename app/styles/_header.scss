@@ -2,30 +2,56 @@
   @include clearfix;
   background-color: $color-brand;
   color: $color-brand-dark;
-  padding: 1em 0 3em;
+  padding: 1.5em 0;
 }
 
 .main__header__wrapper {
   @extend %width-wrapper;
+  padding: 0 2em;
 }
 
-.mailing-list {
-  position: absolute;
-  right: 1em;
-  top: 0.5em;
-}
-
-.mailing-list__description {
-  color: $color-brand-lighter;
+.brand {
   float: left;
-  font-weight: bold;
-  line-height: 2em;
+  margin-right: 0.25em;
+}
+
+.brand__logo {
+  @extend %logo;
+  color: $color-brand;
+  float: left;
+  margin-right: 0.5em;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 .brand__title {
-  color: white;
+  overflow: auto;
+
+  h1 {
+    color: white;
+    font-size: 1.5em;
+    line-height: 1;
+  }
 }
 
-.brand__description {
-  padding: 1em 0 2em;
+.nav {
+  float: right;
+
+  a {
+    color: $color-brand-dark;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 3em;
+    margin-left: 1em;
+    position: relative;
+
+    &:hover {
+      color: black;
+      text-decoration: none;
+    }
+  }
 }

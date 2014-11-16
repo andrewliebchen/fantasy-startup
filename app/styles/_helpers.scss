@@ -29,3 +29,17 @@
 .pull-right {
   float: right !important;
 }
+
+%logo {
+  $size: 2em;
+  background-color: $color-gray;
+  border-radius: $size / 2;
+  color: white;
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: $size;
+  line-height: $size;
+  text-align: center;
+  width: $size;
+}
