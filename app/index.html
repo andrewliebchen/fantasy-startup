@@ -40,8 +40,11 @@
           </div>
         </div>
         <nav class="nav">
-          <a data-toggle="modal">About</a>
-          <a data-toggle="modal">Updates</a>
+          <a class="nav__item" data-toggle="modal" data-modal="#about">About</a>
+          <a class="nav__item" data-toggle="modal" data-modal="#updates">
+            Updates
+            <span class="nav__badge">1<span>
+          </a>
         </nav>
       </div>
     </header>
@@ -71,9 +74,16 @@
     <div id="panel__contents"></div>
   </aside>
   <div class="modal">
-    <h2>What's this then?</h2>
-    <p>Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa.</p>
-    <button data-toggle="modal">Rock on</button>
+    <div id="about" class="modal__content">
+      <h2>What's this then?</h2>
+      <p>Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa.</p>
+      <button data-toggle="modal">Rock on</button>
+    </div>
+    <div id="updates" class="modal__content">
+      <h2>Updates</h2>
+      <p>Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa.</p>
+      <button data-toggle="modal">Rock on</button>
+    </div>
   </div>
   <div class="overlay__background"></div>
 

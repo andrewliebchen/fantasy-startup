@@ -41,6 +41,9 @@ $(document).ready(function() {
   // Toggle the modal
   $(document).on('click', '[data-toggle="modal"]', function(event){
     event.preventDefault();
+    var $modalContentTarget = $($(this).data('modal'));
+    $('.modal__content').hide();
+    $modalContentTarget.show();
     $('body').toggleClass('show-modal');
   });
 });

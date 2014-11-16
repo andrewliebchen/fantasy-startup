@@ -142,3 +142,7 @@ $modal-width: 600px;
     transform: translate3d(0, 0, 0);
   }
 }
+
+.modal__content {
+  display: none;
+}

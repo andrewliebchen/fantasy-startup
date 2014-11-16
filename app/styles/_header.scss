@@ -39,19 +39,35 @@
 
 .nav {
   float: right;
+}
 
-  a {
-    color: $color-brand-dark;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: bold;
-    line-height: 3em;
-    margin-left: 1em;
-    position: relative;
+.nav__item {
+  color: $color-brand-dark;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 3em;
+  margin-left: 1em;
+  position: relative;
 
-    &:hover {
-      color: black;
-      text-decoration: none;
-    }
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.nav__badge {
+  display: inline-block;
+  height: 1.5em;
+  width: 1.5em;
+  line-height: 1.5;
+  border-radius: 1.5em * 0.5;
+  background-color: $color-brand-dark;
+  color: $color-brand;
+  text-align: center;
+  position: relative;
+
+  .nav__item:hover & {
+    color: white;
   }
 }
