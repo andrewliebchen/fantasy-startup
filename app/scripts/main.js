@@ -1,5 +1,6 @@
 $(document).ready(function() {
   // Use tabletop to get the the startup info
+  // Source spreadsheet: https://docs.google.com/spreadsheets/d/1orGnmev3T59ybT9WkKtzlmuLERL-QYy_3dQgNlVlIpw/edit#gid=0
   var URL = "1orGnmev3T59ybT9WkKtzlmuLERL-QYy_3dQgNlVlIpw";
   Tabletop.init({
     key: URL,
